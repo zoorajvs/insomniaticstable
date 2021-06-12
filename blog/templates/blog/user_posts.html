@@ -1,0 +1,61 @@
+{% extends 'basic/base.html' %}
+{% load static %}
+{% block content %}
+
+<h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
+
+
+<section class="w3l-services-block-3 py-5" id="services">
+    <div class="features-main py-lg-5 py-md-3">
+        <div class="container">
+            <div class="header-section text-center mx-auto">
+                <h3 class="title-big">BLOG</h3>
+            </div>
+            {% for post in posts %}
+            <div class="row features mt-lg-4">
+               <div class="col-lg-12 col-md-6 feature-grid">
+                    <a href="{% url 'post-detail' post.id %}">
+                        <div class="feature-body service2">
+                            <div class="feature-img">
+                                <img width="75" height="75" class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+<!--                                <span class="fa fa-wrench icon-fea" aria-hidden="true"></span>-->
+                            </div>
+                            <div class="feature-info mt-4">
+                                <h2 class="feature-titel mb-3"> {{post.post_title}} </h2>
+                                <a href="{% url 'user-posts' post.author.username %}" >{{ post.author.first_name }}</a> <br>
+                                <small>{{ post.date_posted|date:"F d, Y" }}</small>
+                                <p class="feature-text">{{post.content}}
+                                </p>
+                                <a href="{% url 'post-detail' post.id %}" class="read mt-4 d-block"> Detailed View</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+            {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+        <a class="btn btn-outline-info mb-4 mt-2" href="?page=1">First</a>
+            <a class="btn btn-outline-info mb-4 mt-2" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num  %}
+<a class="btn btn-info mb-4 mt-2" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <a class="btn btn-outline-info mb-4 mt-2" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+
+            {% endfor %}
+{% if page_obj.has_next %}
+        <a class="btn btn-outline-info mb-4 mt-2" href="?page={{ page_obj.next_page_number }}">Next</a>
+            <a class="btn btn-outline-info mb-4 mt-2" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}
+

@@ -1,0 +1,15 @@
+{% extends 'basic/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+<div pl-2 class="alert-info">
+
+  Your contact form submitted successfully ! <br>
+  Our team will contact you as soon as possible.!
+
+
+</div>
+  <small>back to <a href="{% url 'home' %}">Home</a></small>
+</div>
+
+{% endblock content %}

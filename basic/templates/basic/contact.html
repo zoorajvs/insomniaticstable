@@ -1,0 +1,59 @@
+{% extends 'basic/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+
+<!-- contact -->
+    <section class="w3l-contacts-12" id="contact">
+        <div class="contact-top pt-5">
+            <div class="container py-lg-4">
+                <div class="title-heading-w3 text-center mx-auto">
+                    <h3 class="title-big">Get In Touch</h3>
+                </div>
+                <div class="d-grid cont-main-top mt-lg-5 mt-4">
+                    <!-- contact form -->
+                    <div class="contacts12-main">
+                        <form method="POST" class="main-input">
+                            <div class="top-inputs d-grid">
+                             {% csrf_token %}
+                             {{form}}
+                               </div>
+                            <div class="text-right">
+                            <button type="submit" class="btn btn-primary btn-style ">Send Message</button>
+                                </div>
+                        </form>
+                    </div>
+                    <!-- //contact form -->
+                    <!-- contact address -->
+                    <div class="contact">
+                        <div class="cont-subs">
+                            <div class="cont-add">
+                                <h4>Location:</h4>
+                                <p class="contact-text-sub">Thrissur, Kerala, India</p>
+                            </div>
+                            <div class="cont-add">
+                                <h4>Email Address:</h4>
+                                <a href="mailto:info@example.com">
+                                    <p class="contact-text-sub">info@insomniatic.com</p>
+                                </a>
+                            </div>
+                            
+                            <div class="social-icons-con">
+                                <h4 class="mb-3">Connect with us:</h4>
+                                <a href="https://facebook.com/insomniatic.in"><span class="fa fa-facebook-square" aria-hidden="true"></span></a>
+                                <a href="https://twitter.com/zoorajvs"><span class="fa fa-twitter-square" aria-hidden="true"></span></a>
+                                <a href="https://instagram.com/zoorajvs"><span class="fa fa-instagram" aria-hidden="true"></span></a>
+                                <a href="https://wa.me/918592908234"><span class="fa fa-whatsapp" aria-hidden="true"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //contact address -->
+                </div>
+            </div>
+            <!-- map -->
+            <div class="map">
+                <div style="max-width:100%;list-style:none; transition: none;overflow:hidden;width:2000px;height:300px;"><div id="googlemaps-display" style="height:100%; width:100%;max-width:100%;"><iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=irinjalakuda&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"></iframe></div><a class="embedded-maphtml" href="https://www.embed-map.com" id="grab-mapdata">https://www.embed-map.com</a><style>#googlemaps-display .text-marker{}.map-generator{max-width: 100%; max-height: 100%; background: none;</style></div>
+            <!-- //map -->
+        </div>
+    </section>
+{% endblock content %}

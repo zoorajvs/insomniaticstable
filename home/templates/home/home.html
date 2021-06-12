@@ -1,0 +1,876 @@
+<!--
+Author: Sooraj V S
+Author URL: https://www.instagram.com/zoorajvs
+-->
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Insomniatic</title>
+
+    <link href="//fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+<!--add icon link-->
+      <link rel="icon" href="https://www.freebiefindingmom.com/wp-content/uploads/2020/12/Free-Printable-Bubble-Letter-Stencils-Bubble-Letter-I-2.jpg" type="image/icon type">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %}">
+  </head>
+  <body>
+
+<header id="site-header" class="fixed-top">
+  <section class="w3l-header-4">
+      <div class="container">
+          <nav class="navbar navbar-expand-lg navbar-light">
+              <h1><a class="navbar-brand" href="{% url 'home' %}">
+                   Insomniatic
+                  </a></h1>
+              <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarNav"
+                  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fa icon-expand fa-bars"></span>
+                  <span class="fa icon-close fa-times"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                   <ul class="navbar-nav">
+                      <li class="nav-item dropdown @@blog__active">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Blog<span class="fa fa-angle-down"></span>
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item @@b__active" href="{% url 'blog-home' %}" class="drop-text">Blog Posts</a>
+                               {% if user.is_authenticated %}
+                              <a class="dropdown-item @@bs__active" href="https://rzp.io/l/fbCBxuJWFk" class="drop-text">Post A Blog</a>
+                               {% endif %}
+                          </div>
+                      </li>
+                      <li class="nav-item @@about__active">
+                          <a class="nav-link" href="{% url 'about' %}">About</a>
+                      </li>
+                      <li class="nav-item @@services__active">
+                          <a class="nav-link" href="{% url 'services' %}">Our Services</a>
+                      </li>
+                      <li class="nav-item @@contact__active">
+                          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                      </li>
+                      {% if user.is_authenticated %}
+                      <li class="nav-item dropdown @@blog__active">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {% if user.first_name %}
+                              {{user.first_name}} <span class="fa fa-angle-down"></span>
+                              {% else %}
+                              {{user.username}} <span class="fa fa-angle-down"></span>
+                              {% endif %}
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item @@b__active" href="{% url 'profile' %}" class="drop-text">Profile</a>
+                              <a class="dropdown-item @@bs__active" href="{% url 'password_reset' %}" class="drop-text">Change Password</a>
+                              <a class="dropdown-item @@bs__active" href="{% url 'logout' %}" class="drop-text">Logout</a>
+
+                          </div>
+                      </li>
+                      {% else %}
+                       <li class="nav-item @@services__active">
+                          <a class="nav-link" href="{% url 'login'  %}">Login</a>
+                      </li>
+                      <li class="nav-item @@services__active">
+                          <a class="nav-link" href="{% url 'register'  %}">Register</a>
+                      </li>
+                      {% endif %}
+                  </ul>
+
+                  <ul class="navbar-nav search-right mt-lg-0 mt-2">
+                      <li class="nav-item mr-2" title="Search"><a href="#search" class="btn search-search">
+                              <span class="fa fa-search" aria-hidden="true"></span></a></li>
+                       {% if user.is_authenticated %}
+                      <li class="nav-item"><a href="{% url 'logout' %}"
+                              class="btn btn-primary d-none d-lg-block btn-style mr-3">Log Out</a></li>
+                      {% endif %}
+                  </ul>
+
+                  <!-- //toggle switch for light and dark theme -->
+                  <!-- search popup -->
+                  <div id="search" class="pop-overlay">
+                      <div class="popup">
+                          <form action="{% url 'blog-home' %}" method="GET" class="d-flex">
+                              <input type="search" placeholder="Search.." name="search" required="required" autofocus>
+                              <button type="submit"><span class="fa fa-search"></span></button>
+                              <a class="close" href="#close">&times;</a>
+                          </form>
+                      </div>
+                  </div>
+                  <!-- /search popup -->
+              </div>
+              <!-- toggle switch for light and dark theme -->
+              <div class="mobile-position">
+                  <nav class="navigation">
+                      <div class="theme-switch-wrapper">
+                          <label class="theme-switch" for="checkbox">
+                              <input type="checkbox" id="checkbox">
+                              <div class="mode-container">
+                                  <i class="gg-sun"></i>
+                                  <i class="gg-moon"></i>
+                              </div>
+                          </label>
+                      </div>
+                  </nav>
+              </div>
+          </nav>
+      </div>
+  </section>
+</header>
+
+<!-- main-slider -->
+<section class="w3l-main-slider" id="home">
+    <div class="companies20-content">
+        <div class="owl-one owl-carousel owl-theme">
+            <div class="item">
+                <li>
+                    <div class="slider-info banner-view bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="banner-info-bg">
+                                    <h6>We are Creative</h6>
+                                    <h5>IT Service Provider</h5>
+                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
+                                        creates amazing Web Service experiences. </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="{% url 'about' %}"> Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <div class="item">
+                <li>
+                    <div class="slider-info  banner-view banner-top1 bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="banner-info-bg">
+                                    <h6>We are Creative</h6>
+                                    <h5>IT Service company </h5>
+                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
+                                        creates amazing Web Service experiences. </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <div class="item">
+                <li>
+                    <div class="slider-info banner-view banner-top2 bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="banner-info-bg">
+                                    <h6>We are Creative</h6>
+                                    <h5>IT Service company </h5>
+                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
+                                        creates amazing Web Service experiences. </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+            <div class="item">
+                <li>
+                    <div class="slider-info banner-view banner-top3 bg bg2">
+                        <div class="banner-info">
+                            <div class="container">
+                                <div class="banner-info-bg">
+                                    <h6>We are Creative</h6>
+                                    <h5>IT Service company </h5>
+                                    <p class="mt-md-4 mt-3">Get the most of reduction in your team’s operating
+                                        creates amazing Web Service experiences. </p>
+                                    <a class="btn btn-style btn-primary mt-sm-5 mt-4 mr-2" href="about.html"> Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /main-slider -->
+<!-- about page about section -->
+<section class="w3l-aboutblock1" id="about">
+    <div class="midd-w3 py-5">
+        <div class="container py-lg-5 py-md-3 py-2">
+            <div class="row">
+                <div class="col-lg-6 mb-lg-0 mb-md-5 mb-5 align-self">
+                    <h3 class="title-big mx-0">We would be pleased to work with you to introduce you to the solutions available through us in the field of Information Technology</h3>
+                    <p class="mt-md-4 mt-3">The IT industry is booming and, right now, the foundation of the digital world is of paramount importance.
+                        We are proud to partner with you to test, operate and support IT services. To help your business with the digital world,
+                        we offer ITrelated services. We are all ready to integrate our experience and knowledge to help clients get the most
+                        out of their IT investment. In today’s digital age, consumers have high expectations from IT because it makes businesses dynamic,
+                        service-oriented and unpredictable, and satisfying for their customers. It is the foundation that helps one to be able to convey
+                        the experience.</p>
+                    <a href="#services" class="btn btn-primary btn-style mt-md-5 mt-4 mr-2">Explore features</a>
+                    <a href="{% url 'services' %}" class="btn btn-outline-primary btn-style mt-md-5 mt-4"> View all</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="{% static 'assets/images/aboutnew.png' %}" alt="" class="radius-image img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //about page about section -->
+<!--  services section -->
+<div class="w3l-servicesblock2" id="services">
+    <section id="grids5-block" class="py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h3 class="title-big text-center">Some of Our Digital
+                IT Services</h3>
+            <div class="row mt-lg-5 mt-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="grids5-info">
+                        <a href="{% url 'services' %}" class="d-block zoom"><img src="{% static 'assets/images/s1.jpg' %}" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-desktop"></span>
+                            <h4><a href="{% url 'services' %}">IT Support</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-md-0 mt-5">
+                    <div class="grids5-info">
+                        <a href="{% url 'services' %}" class="d-block zoom"><img src="{% static 'assets/images/s4.jpg' %}" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-cogs"></span>
+                            <h4><a href="{% url 'services' %}">Digital Product</a></h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
+                    <div class="grids5-info">
+                        <a href="{% url 'services' %}" class="d-block zoom"><img src="{% static 'assets/images/s3.jpg' %}" alt=""
+                                class="img-fluid service-image" /></a>
+                        <div class="blog-info">
+                            <span class="fa fa-line-chart"></span>
+                            <h4><a href="{% url 'services' %}">Business Software</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!--  //services section -->
+<section class="w3l-products w3l-faq-block py-5" id="projects">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="row ">
+            <div class="col-lg-6 mx-auto">
+                <h3 class="title-big mb-md-5 mb-4 mw-100">Need a Better Work? We are here to IT Solution</h3>
+                <!--Horizontal Tab-->
+                <div id="parentHorizontalTab">
+                    <ul class="resp-tabs-list hor_1 mb-2">
+                        <li>What we do</li>
+                        <li>Our Mission</li>
+                        <li>Social impact</li>
+                        <div class="clear"></div>
+                    </ul>
+                    <div class="resp-tabs-container hor_1">
+                        <div class="products-content">
+                            <h4 class="head">To believe that the smart looking website is the first impression all over.</h4>
+                            <p>Having a website means customers are always able to find you – anytime, anywhere.
+                                Even outside of business hours, your website continues to find and secure new customers. </p>
+                                <ul class="w3l-right-book mt-4">
+                                    <li><span class="fa fa-check" aria-hidden="true"></span>Providing Web Pages</li>
+                                </ul>
+                        </div>
+                        <div class="products-content">
+                            <h4 class="head">Having a website means customers are always able to find you – anytime, anywhere.</h4>
+                            <p>It offers the user convenience as they can access the information they need in the comfort of their own home,
+                                with no added pressure to buy. Plus, as most companies nowadays have their own website, there’s every chance
+                                you could be losing customers to your competitors by staying offline</p>
+                            <ul class="w3l-right-book mt-4">
+                                <li><span class="fa fa-check" aria-hidden="true"></span>Helping Nonprofit organizations for creating digital products</li>
+                                <li><span class="fa fa-check" aria-hidden="true"></span>Also providing websites with affordable price</li>
+                            </ul>
+                        </div>
+                        <div class="products-content">
+                            <h4 class="head">By having an online presence through your website, you are able to reach more consumers.</h4>
+                            <p>Sales are vital to every business. It’s the only way that you can keep your company up and running.
+                                And improving sales is the best way to improve the health and success of your business.
+                                The importance of a website for sales is very high</p>
+                            <ul class="w3l-right-book mt-4">
+                                <li><span class="fa fa-check" aria-hidden="true"></span>Always Fast and friendly support</li>
+                                <li><span class="fa fa-check" aria-hidden="true"></span>Experienced Professional Team</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 pr-lg-5 mt-lg-0 mt-sm-5 mt-4">
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <button id="accordion-button-1" aria-expanded="true"><span class="accordion-title">Benefits of Having a Website</span><span class="icon" aria-hidden="true"></span></button>
+                        <div class="accordion-content">
+                            <p>Websites, in general, are great ways to in providing a place that potential investors can be referred to.
+                                It shows what your company is about, what it has achieved, and what it can achieve in the future.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button id="accordion-button-2" aria-expanded="false"><span class="accordion-title">How to
+                                choose a best web template?</span><span class="icon" aria-hidden="true"></span></button>
+                        <div class="accordion-content">
+                            <p>Every website has its own peculiarities, its own specificity. Understanding the features of your website is,
+                                therefore, the first and most important, but often ignored part of selecting a proper template.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button id="accordion-button-3" aria-expanded="false"><span class="accordion-title">The selection process of a templates</span><span class="icon" aria-hidden="true"></span></button>
+                        <div class="accordion-content">
+                            <p>Choose a topic for your website. You can choose from millions of various types of websites to suit your needs.
+                                    Choose the appropriate color scheme
+                                You can also change the color to match your website's theme.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title">Customer benefits?</span><span class="icon" aria-hidden="true"></span></button>
+                        <div class="accordion-content">
+                            <p>Customers may use the varied variety of data accessible to better understand how your social media channels.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <button id="accordion-button-4" aria-expanded="false"><span class="accordion-title">Looking for a new website?</span><span class="icon" aria-hidden="true"></span></button>
+                        <div class="accordion-content">
+                            <p>We're More Than Happy to Assist!
+                            We develop different types of websites, so if you'd like to make one,
+                                please contact us by <a href="{% url 'contact' %}">Clicking Here</a>..</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  services section -->
+<div class="w3l-servicesblock2" id="process">
+    <section id="grids5-block" class="py-5">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <h3 class="title-big text-center">Come for Visit to See our
+                Work Process</h3>
+            <div class="row mt-lg-5 mt-4">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="grids5-info">
+                        <a href="#service" class="blog-image d-block zoom"><img src="{% static 'assets/images/p1.jpg' %}" alt=""
+                                class="img-fluid radius-image" />
+                            <div class="image-overlay">
+                                <h4>Dedicated IT Solution</h4>
+                                <p>We ensure that you have access to friendly technologists when you need them.</p>
+                            </div>
+                            <div class="iconic-plus">
+                                <span class="fa fa-plus"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mt-md-0 mt-4">
+                    <div class="grids5-info">
+                        <a href="#service" class="blog-image d-block zoom"><img src="{% static 'assets/images/p2.jpg' %}" alt=""
+                                class="img-fluid radius-image" />
+                            <div class="image-overlay">
+                                <h4>Software Product Development</h4>
+                                <p>We adhere to the strictest code quality and programme design guidelines.</p>
+                            </div>
+                            <div class="iconic-plus">
+                                <span class="fa fa-plus"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-4">
+                    <div class="grids5-info">
+                        <a href="#service" class="blog-image d-block zoom"><img src="{% static 'assets/images/p3.jpg' %}" alt=""
+                                class="img-fluid radius-image" />
+                            <div class="image-overlay">
+                                <h4>We're all smart workers.</h4>
+                                <p>Working hard and working smart are not always the same thing.</p>
+                            </div>
+                            <div class="iconic-plus">
+                                <span class="fa fa-plus"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 mt-lg-0 mt-4">
+                    <div class="grids5-info">
+                        <a href="#service" class="blog-image d-block zoom"><img src="{% static 'assets/images/p4.jpg' %}" alt=""
+                                class="img-fluid radius-image" />
+                            <div class="image-overlay">
+                                <h4>We make use of cutting-edge technology.</h4>
+                                <p>We are all aware of the importance of technology nowadays. Technology's worth is incalculable. 
+                                
+                                </p>
+                            </div>
+                            <div class="iconic-plus">
+                                <span class="fa fa-plus"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!--  //services section -->
+<section class="w3l-bottom1 py-5">
+    <div class="container py-md-5 py-sm-4 py-2">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="bottom-info">
+                    <div class="header-section">
+                        <h3 class="title-big mx-0">Start improving your Business today! Join Us</h3>
+                        <p class="mt-3 pr-lg-5">We are honoured to collaborate with you on IT service testing,
+                             operation, and support. We provide I T services to assist your business with 
+                             the digital world.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 align-self text-lg-right">
+                <a href="{% url 'services' %}" class="btn btn-style btn-outline-dark mt-lg-0 mt-md-5 mt-4 mr-2">Learn More </a>
+                <a href="{% url 'contact' %}" class="btn btn-style btn-primary mt-lg-0 mt-md-5 mt-4">Contact us</a>
+        </div>
+    </div>
+</section>
+<section class="w3l-services-block-3 py-5" id="services">
+    <div class="features-main py-lg-5 py-md-3">
+        <div class="container">
+            <div class="header-section text-center mx-auto">
+                <h3 class="title-big">To design and deliver the innovative products.</h3>
+            </div>
+            <div class="row features mt-lg-4">
+                <div class="col-lg-4 col-md-6 feature-grid">
+                    <a href="#url">
+                        <div class="feature-body service1">
+                            <div class="feature-img">
+                                <span class="fa fa-sun-o" aria-hidden="true"></span>
+                            </div>
+                            <div class="feature-info mt-4">
+                                <h3 class="feature-titel mb-3">Augmented Reality </h3>
+                                <p class="feature-text">Lorem ipsum dolor sit amet elit et. Debitis nam, minima iste
+                                    ipsum.
+                                </p>
+                                <a href="#read" class="read mt-4 d-block"> Read More</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 feature-grid">
+                    <a href="#url">
+                        <div class="feature-body service2">
+                            <div class="feature-img">
+                                <span class="fa fa-wrench icon-fea" aria-hidden="true"></span>
+                            </div>
+                            <div class="feature-info mt-4">
+                                <h3 class="feature-titel mb-3">Deep Expertise</h3>
+                                <p class="feature-text">Lorem ipsum dolor sit amet elit et. Debitis nam, minima iste
+                                    ipsum.
+                                </p>
+                                <a href="#read" class="read mt-4 d-block"> Read More</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-md-6 feature-grid">
+                    <a href="#url">
+                        <div class="feature-body service3">
+                            <div class="feature-img">
+                                <span class="fa fa-flask" aria-hidden="true"></span>
+                            </div>
+                            <div class="feature-info mt-4">
+                                <h3 class="feature-titel mb-3">Software development</h3>
+                                <p class="feature-text">Lorem ipsum dolor sit amet elit et. Debitis nam, minima iste
+                                    ipsum.
+                                </p>
+                                <a href="#read" class="read mt-4 d-block"> Read More</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--  News section -->
+<!--<div class="w3l-news text-11" id="homeblog">-->
+<!--    <section id="grids5-block" class="py-5">-->
+<!--        <div class="container py-lg-5 py-md-4 py-2">-->
+<!--            <h3 class="title-big text-center">Our Great Idea For<br>-->
+<!--                IT News</h3>-->
+<!--            <div class="row mt-lg-5 mt-4 text11-content">-->
+<!--                <div class="col-lg-4 col-md-6 mt-md-0 mt-sm-4">-->
+<!--                    <div class="grids5-info">-->
+<!--                        <a href="#blog-single" class="blog-image d-block zoom"><img src="{% static 'assets/images/blog1.jpg' %}"-->
+<!--                                alt="" class="img-fluid news-image" />-->
+<!--                            <div class="image-overlay">-->
+<!--                                <span class="fa fa-plus"></span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <div class="blog-info card-body blog-details">-->
+<!--                            <h6 class="">Jan 15, 2021.</h6>-->
+<!--                            <a href="#category" class="post">Business, Case study</a>-->
+<!--                            -->
+<!--                            <a href="#blog-single" class="blog-desc">Designers Checklist for Every UX-->
+<!--                                Project they Do.</a>-->
+<!--                                <a href="#blog-single" class="read">Read more <span-->
+<!--                                        class="fa fa-arrow-right"></span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mt-md-0 mt-5">-->
+<!--                    <div class="grids5-info">-->
+<!--                        <a href="#blog-single" class="blog-image d-block zoom"><img src="{% static 'assets/images/blog6.jpg' %}"-->
+<!--                                alt="" class="img-fluid news-image" />-->
+<!--                            <div class="image-overlay">-->
+<!--                                <span class="fa fa-plus"></span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <div class="blog-info card-body blog-details">-->
+<!--                            <h6 class="">Jan 15, 2021.</h6>-->
+<!--                            <a href="#category" class="post">Business, Case study</a>-->
+<!--                            -->
+<!--                            <a href="#blog-single" class="blog-desc">Designers Checklist for Every UX-->
+<!--                                Project they Do.</a>-->
+<!--                                <a href="#blog-single" class="read">Read more <span-->
+<!--                                        class="fa fa-arrow-right"></span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6 mt-lg-0 mt-5">-->
+<!--                    <div class="grids5-info">-->
+<!--                        <a href="#blog-single" class="blog-image d-block zoom"><img src="{% static 'assets/images/blog3.jpg' %}"-->
+<!--                                alt="" class="img-fluid news-image" />-->
+<!--                            <div class="image-overlay">-->
+<!--                                <span class="fa fa-plus"></span>-->
+<!--                            </div>-->
+<!--                        </a>-->
+<!--                        <div class="blog-info card-body blog-details">-->
+<!--                            <h6 class="">Jan 15, 2021.</h6>-->
+<!--                            <a href="#category" class="post">Business, Case study</a>-->
+<!--                            <a href="#blog-single" class="blog-desc">Designers Checklist for Every UX-->
+<!--                                Project they Do.</a>-->
+<!--                                <a href="#blog-single" class="read">Read more <span-->
+<!--                                        class="fa fa-arrow-right"></span></a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</div>-->
+<!--  //News section -->
+
+<!-- customers Section -->
+<section class="w3l-customers py-md-5 py-4" id="clients">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="owl-three owl-carousel owl-theme logo-view">
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew5.png' %}" alt="company-logo" class="img-fluid">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew2.png' %}"alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew3.png' %}" alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew4.png' %}"g" alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew5.png' %}" alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew2.png' %}"alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew3.png' %}" alt="company-logo" class="img-fluid">
+
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'assets/images/logonew4.png' %}" alt="company-logo" class="img-fluid">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //customers Section -->
+<!-- footer -->
+<section class="w3l-footer-29-main">
+  <div class="footer-29 py-5">
+    <div class="container py-lg-4">
+      <div class="row footer-top-29">
+        <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-1 pr-lg-5">
+          <div class="footer-logo mb-4">
+            <a class="navbar-brand" href="#home">
+                Insomniatic</a>
+          </div>
+          <p>Get the most of reduction in your team’s operating
+            creates amazing Web Service experiences.  </p>
+          <div class="main-social-footer-29 mt-4">
+            <a href="https://www.facebook.com/insomniatic.in" class="facebook"><span class="fa fa-facebook"></span></a>
+            <a href="https://www.twitter.com/zoorajvs" class="twitter"><span class="fa fa-twitter"></span></a>
+            <a href="https://instagram.com/zoorajvs" class="instagram"><span class="fa fa-instagram"></span></a>
+            <a href="https://wa.me/918943387868" class="linkedin"><span class="fa fa-whatsapp"></span></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-sm-0 mt-5">
+
+          <ul>
+            <h6 class="footer-title-29">Navigation</h6>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'blog-home' %}"> Blog posts</a></li>
+            <li><a href="{% url 'services' %}">Services</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
+            <li><a href="{% url 'terms-of-use' %}">Terms of use</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+          <h6 class="footer-title-29">Resources</h6>
+          <ul>
+            <li><a href="#homeblog">Marketing Plans</a></li>
+            <li><a href="{% url 'services' %}">Digital Services</a></li>
+            <li><a href="{% url 'contact' %}">Product Selling</a></li>
+          </ul>
+
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-4 mt-lg-0 mt-5">
+          <h6 class="footer-title-29">Contact Info </h6>
+          <p>Thrissur, Kerala, India</p>
+          <p class="mt-2">Email : <a href="mailto:info@example.com">info@insomniatic.in</a></p>
+          <p class="mt-2">Support : <a href="mailto:info@support.com">help@support.in</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- copyright -->
+  <section class="w3l-copyright text-center">
+    <div class="container">
+        <p class="copy-footer-29">© 2021 Insomniatic. All rights reserved. Owned by <a href="https://instagram.com/zoorajvs/"
+            target="_blank">
+            Sooraj V S</a></p>
+    </div>
+
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+      &#10548;
+    </button>
+
+    <script>
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function () {
+        scrollFunction()
+      };
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          document.getElementById("movetop").style.display = "block";
+        } else {
+          document.getElementById("movetop").style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+    </script>
+    <!-- /move top -->
+  </section>
+  <!-- //copyright -->
+</section>
+
+
+ 
+
+  <!--  javascripts file here -->
+  <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+
+  <script src="{% static 'assets/js/theme-change.js' %}"></script> <!-- //light and dark mode switch js -->
+
+  <script src="{% static 'assets/js/jquery-1.9.1.min.js' %}"></script>
+  <!-- faq -->
+  <script>
+    const items = document.querySelectorAll(".accordion button");
+
+    function toggleAccordion() {
+      const itemToggle = this.getAttribute('aria-expanded');
+
+      for (i = 0; i < items.length; i++) {
+        items[i].setAttribute('aria-expanded', 'false');
+      }
+
+      if (itemToggle == 'false') {
+        this.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
+  </script>
+  <!-- //faq -->
+
+  <script src="{% static 'assets/js/easyResponsiveTabs.js' %}"></script>
+  <!--Plug-in Initialisation-->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      //Horizontal Tab
+      $('#parentHorizontalTab').easyResponsiveTabs({
+        type: 'default', //Types: default, vertical, accordion
+        width: 'auto', //auto or any width like 600px
+        fit: true, // 100% fit in a container
+        tabidentify: 'hor_1', // The tab groups identifier
+        activate: function (event) { // Callback function if tab is switched
+          var $tab = $(this);
+          var $info = $('#nested-tabInfo');
+          var $name = $('span', $info);
+          $name.text($tab.text());
+          $info.show();
+        }
+      });
+    });
+  </script>
+
+  <!-- owl carousel -->
+  <script src="{% static 'assets/js/owl.carousel.js' %}"></script>
+  <!-- script for banner slider-->
+  <script>
+    $(document).ready(function () {
+      $('.owl-one').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        responsiveClass: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplaySpeed: 1000,
+        autoplayHoverPause: false,
+        responsive: {
+          0: {
+            items: 1
+          },
+          480: {
+            items: 1
+          },
+          667: {
+            items: 1
+          },
+          1000: {
+            items: 1
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //script -->
+  <!-- owl carousel -->
+
+
+  <!-- script for customers -->
+  <script>
+    $(document).ready(function () {
+      $('.owl-three').owlCarousel({
+        loop: true,
+        margin: 0,
+        nav: false,
+        dots: false,
+        responsiveClass: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplaySpeed: 1000,
+        autoplayHoverPause: false,
+        responsive: {
+          0: {
+            items: 3,
+            nav: true
+          },
+          480: {
+            items: 3,
+            nav: true
+          },
+          667: {
+            items: 3,
+            nav: true
+          },
+          800: {
+            items: 4,
+            nav: true
+          },
+          1000: {
+            items: 5,
+            nav: true
+          }
+        }
+      })
+    })
+  </script>
+  <!-- //customers owlcarousel -->
+
+  <!-- disable body scroll which navbar is in active -->
+  <!-- <script>
+    $(function () {
+      $('.navbar-toggler').click(function () {
+        $('body').toggleClass('noscroll');
+      })
+    });
+  </script> -->
+  <!-- disable body scroll which navbar is in active -->
+
+  <!--/MENU-JS-->
+  <script>
+    $(window).on("scroll", function () {
+      var scroll = $(window).scrollTop();
+
+      if (scroll >= 80) {
+        $("#site-header").addClass("nav-fixed");
+      } else {
+        $("#site-header").removeClass("nav-fixed");
+      }
+    });
+
+    //Main navigation Active Class Add Remove
+    $(".navbar-toggler").on("click", function () {
+      $("header").toggleClass("active");
+    });
+    $(document).on("ready", function () {
+      if ($(window).width() > 991) {
+        $("header").removeClass("active");
+      }
+      $(window).on("resize", function () {
+        if ($(window).width() > 991) {
+          $("header").removeClass("active");
+        }
+      });
+    });
+  </script>
+  <!--//MENU-JS-->
+
+  <script src="{% static 'assets/js/bootstrap.min.js' %}"></script><!-- //bootstrap js -->
+
+  </body>
+
+  </html>
