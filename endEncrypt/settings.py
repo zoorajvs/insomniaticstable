@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os.path
 from pathlib import Path
 from decouple import config
-import django_heroku
+# import django_heroku
 
 
 
@@ -104,6 +104,7 @@ DATABASES = {
     }
 }
 
+. . .
 
 
 
@@ -169,6 +170,6 @@ EMAIL_HOST_USER = config('email_user')
 EMAIL_HOST_PASSWORD = config('email_pass')
 
 
-# Activate Django-Heroku.
-django_heroku.settings(locals())
+# # Activate Django-Heroku.
+# django_heroku.settings(locals())
 
