@@ -58,7 +58,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 class PostUpdateView(LoginRequiredMixin,UserPassesTestMixin , UpdateView):
     model = Post
     extra_context = {'title': 'Blog / Update'}
-    fields = ['post_title', 'content']
+    fields = ['post_title', 'content','content_1']
 
     def form_valid(self, form):
         form.instance.author = self.request.user  # <<<for setting author
