@@ -42,7 +42,7 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    extra_context = {'title': 'Blog / view'}
+    # extra_context = {'title': 'Blog / view'}
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):

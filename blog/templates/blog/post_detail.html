@@ -37,7 +37,7 @@
                                 </p>
                              <p class="feature-text">{{object.content_1}}
                                 </p>
-                                <a href="{% url 'blog-home' %}">Back</a>
+                                <a href="{{request.META.HTTP_REFERER}}">Go back</a>
                             </div>
 <!--                        </div>-->
                     </a>
