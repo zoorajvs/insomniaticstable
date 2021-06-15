@@ -10,6 +10,13 @@ class Post(models.Model):
     content_1 = models.TextField(null=True)
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    Related_to = (
+        ('Technology/IT', 'Technology/IT'),
+        ('Technology/Electronics', 'Technology/Electronics'),
+        ('Technology/Space', 'Technology/Space'),
+        ('Technology/Others', 'Technology/Others'),
+    )
+    type = models.CharField(max_length=25, choices=Related_to, default='Technology/Others')
 
     def __str__(self):
         return self.post_title
