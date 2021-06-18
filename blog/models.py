@@ -15,8 +15,13 @@ class Post(models.Model):
         ('Technology/Electronics', 'Technology/Electronics'),
         ('Technology/Space', 'Technology/Space'),
         ('Technology/Others', 'Technology/Others'),
+        ('Technology/Apps-Softwares', 'Technology/Apps-Softwares')
     )
     type = models.CharField(max_length=25, choices=Related_to, default='Technology/Others')
+    likes = models.ManyToManyField(User,related_name='blog_posts')
+
+    def total_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return self.post_title

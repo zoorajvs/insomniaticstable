@@ -1,16 +1,26 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.urls import reverse
 from django.views.generic import (ListView,
                                   DetailView,
                                   CreateView,
                                   UpdateView,
                                   DeleteView
                                   )
-
+from django.http import HttpResponseRedirect
 from blog.models import Post
 
-
+def LikeView(request,pk):
+    post = get_object_or_404(Post, id=request.POST.get('post_id'))
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        liked=False
+    else:
+        post.likes.add(request.user)
+        liked=True
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 def BlogHome(request):
     context = {
         'posts': Post.objects.all(),
@@ -43,6 +53,16 @@ class UserPostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
     # extra_context = {'title': 'Blog / view'}
+    def get_context_data(self,*args, **kwargs):
+        context = super(PostDetailView, self).get_context_data()
+        stuff = get_object_or_404(Post,id=self.kwargs['pk'])
+        total_likes = stuff.total_likes()
+        liked = False
+        if stuff.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        context["total_likes"] = total_likes
+        context["liked"]= liked
+        return context
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
