@@ -20,6 +20,8 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from users.views import PasswordsChangeView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('blog/', include('blog.urls')),
@@ -49,6 +51,16 @@ urlpatterns = [
              template_name='users/password_reset_complete.html'
          ),
          name='password_reset_complete'),
+    # path('password/',
+    #      auth_views.PasswordChangeView.as_view(
+    #          template_name = 'users/change_password.html'
+    # )),
+    path('password/',
+         PasswordsChangeView.as_view(
+             template_name='users/change_password.html'
+         ),
+         name = 'change_password'),
+    path('password_success',user_views.password_success, name= 'password_success')
 
 ]
 if settings.DEBUG:

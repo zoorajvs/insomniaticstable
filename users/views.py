@@ -1,7 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
 from django.shortcuts import render, redirect
-from .forms import UserRegistartionForm, UserUpdateForm ,ProfileUpdateForm
+from django.urls import reverse_lazy
+
+from .forms import UserRegistartionForm, UserUpdateForm, ProfileUpdateForm
 
 
 def register(request):
@@ -16,10 +20,11 @@ def register(request):
     else:
         form = UserRegistartionForm()
     context = {
-        'title':'Registration',
-        'form':form,
+        'title': 'Registration',
+        'form': form,
     }
-    return render(request,'users/register.html',context)
+    return render(request, 'users/register.html', context)
+
 
 @login_required
 def Profile(request):
@@ -39,8 +44,18 @@ def Profile(request):
         p_form = ProfileUpdateForm(instance=request.user.profile)
 
     context = {
-        'u_form':u_form,
-        'p_form':p_form,
+        'u_form': u_form,
+        'p_form': p_form,
         'title': 'Profile'
     }
-    return render(request,'users/profile.html',context)
+    return render(request, 'users/profile.html', context)
+
+
+class PasswordsChangeView(PasswordChangeView):
+    form_class = PasswordChangeForm
+    # success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('password_success')
+
+@login_required()
+def password_success(request):
+    return render(request, 'users/password_success.html', {'title': 'Password Changed'})

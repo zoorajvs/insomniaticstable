@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['206.189.142.186', 'insomniatic.in']
 
 
 
+
 # Application definition
 
 INSTALLED_APPS = [

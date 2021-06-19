@@ -18,7 +18,7 @@ class Post(models.Model):
         ('Technology/Apps-Softwares', 'Technology/Apps-Softwares')
     )
     type = models.CharField(max_length=25, choices=Related_to, default='Technology/Others')
-    likes = models.ManyToManyField(User,related_name='blog_posts')
+    likes = models.ManyToManyField(User, related_name='blog_posts')
 
     def total_likes(self):
         return self.likes.count()
@@ -28,3 +28,6 @@ class Post(models.Model):
 
     def get_absolute_url(self):  # for redircting to the post after the creation of the same
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
+
