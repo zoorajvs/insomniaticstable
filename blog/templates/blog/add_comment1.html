@@ -1,0 +1,28 @@
+{% extends 'basic/base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+{% block content %}
+<br>
+<div class="content-section" xmlns="http://www.w3.org/1999/html">
+  <div class="container">
+<form method="POST">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Comment On Blog Post</legend>
+    {{ form|crispy }}
+  </fieldset>
+  <small class="text-muted ml-2">By commenting, you agree to <a href="{% url 'home' %}">Insomniatic</a>'s
+    <a href="{% url 'terms-of-use' %}">Terms of Use,User Policy</a>
+ </small>
+ <br>
+ <button type="submit" class="btn btn-outline-success">Comment</button>
+
+</form>
+      <br>
+    </div>
+
+
+</div>
+
+
+{% endblock content %}

@@ -64,6 +64,27 @@
 </svg>
                             </form>
                             <br>
+                            <h3>Comments...</h3>
+                            <br>
+                            {% if not post.comments1.all %}
+                            <hr>
+                             No Comments Yet <a href="{% url 'add_comment' post.pk %}">Add One</a>
+                            <hr>
+                            {% else %}
+                            <a href="{% url 'add_comment' post.pk %}">Add Comment</a> <br><hr>
+                                {% for comment1 in post.comments1.all %}
+
+                                    <strong style="color:#f3525a">
+                                    {{ comment1.name }} -
+                                    {{ comment1.date_added }}
+                                        </strong>
+                            <br>
+                                    {{ comment1.body }}
+                            <br>
+                            <hr>
+                                {% endfor %}
+                            {% endif %}
+                            <br>
                            <b><a href="{{request.META.HTTP_REFERER}}">Go back</a></b>
 
                             </div>

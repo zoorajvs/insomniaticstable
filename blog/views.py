@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (ListView,
                                   DetailView,
                                   CreateView,
@@ -9,7 +9,10 @@ from django.views.generic import (ListView,
                                   DeleteView
                                   )
 from django.http import HttpResponseRedirect
-from blog.models import Post
+
+from blog.forms import CommentForm
+from blog.models import Post, Comment1
+
 
 def LikeView(request,pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
@@ -101,3 +104,20 @@ class PostDeleteView(LoginRequiredMixin,UserPassesTestMixin,  DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+
+class PostCommentView(CreateView):
+    model = Comment1
+    form_class = CommentForm
+    extra_context = {'title': 'Add Comment'}
+    template_name = 'blog/add_comment1.html'
+    # fields = '__all__'
+    success_url = reverse_lazy('blog-home')
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        pk = self.kwargs["pk"]
+        return reverse("post-detail", kwargs={"pk": pk})
