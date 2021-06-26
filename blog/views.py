@@ -112,7 +112,7 @@ class PostCommentView(CreateView):
     extra_context = {'title': 'Add Comment'}
     template_name = 'blog/add_comment1.html'
     # fields = '__all__'
-    success_url = reverse_lazy('blog-home')
+    # success_url = reverse_lazy('blog-home')
 
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
