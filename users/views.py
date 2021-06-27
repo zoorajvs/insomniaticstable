@@ -15,7 +15,7 @@ def register(request):
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'{username} your account has been created, You are now able to login !')
-            return redirect('profile')
+            return redirect('profile_view')
 
     else:
         form = UserRegistartionForm()
@@ -46,7 +46,7 @@ def Profile(request):
     context = {
         'u_form': u_form,
         'p_form': p_form,
-        'title': 'Profile'
+        'title': 'Edit Profile'
     }
     return render(request, 'users/profile.html', context)
 
@@ -59,3 +59,11 @@ class PasswordsChangeView(PasswordChangeView):
 @login_required()
 def password_success(request):
     return render(request, 'users/password_success.html', {'title': 'Password Changed'})
+
+@login_required
+def ProfileView(request):
+    return render(request,'users/profile_view.html',{'title':'Profile'})
+
+@login_required
+def Notifications(request):
+    return render(request,'users/notifications.html',{'title':'Notifications'})

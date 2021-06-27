@@ -1,0 +1,24 @@
+{% extends 'basic/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+<fieldset class="form-group">
+    <legend class="border-bottom mb-4">Notifications</legend>
+  </fieldset>
+
+  <div class="alert alert-info" role="alert">
+    Hai {{user.first_name}}, We've launched a new blog series,
+     which you should read anyhow since you'll enjoy it. To read more,
+      <a href="https://insomniatic.in/blog/user/don"> go here.!</a>
+      
+</div>
+
+  <div class="alert alert-info" role="alert">
+      Hai {{user.first_name}}, Welcome to <a href="{% url 'home' %}">Insomniatic</a> family !
+  </div>
+
+</div>
+
+
+{% endblock content %}

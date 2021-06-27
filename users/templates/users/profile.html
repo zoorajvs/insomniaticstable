@@ -6,16 +6,19 @@
 <div class="content-section">
   <div class="media">
     <div class="conatiner">
-    <img width="175" height="175" class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <br>
+    <img width="150" height="150" class="rounded-circle account-img" src="{{ user.profile.image.url }}">
     </div>
     <div class="container">
       <div class="media-body">
+        <br>
       <h2 class="account-heading"> {{ user.first_name }} {{ user.last_name }}</h2>
         <hr>
-        <small class="text-secondary">User Name : </small> <br>  <h6 class="text-danger">{{ user.username }}</h6>
+        <small class="text-secondary">User Bio : </small> <br>  <h6 class="text-danger">{{ user.profile.bio }}</h6>
         <small class="text-secondary">Registerd Email ID :</small> <br> <h6 class="text-danger">{{ user.email }}<h6>
-    </div>
+    </div> 
       </div>
+      
   </div>
   <br>
   <form method="POST" enctype="multipart/form-data">

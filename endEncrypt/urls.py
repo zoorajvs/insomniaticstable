@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from users.views import PasswordsChangeView
+from users.views import PasswordsChangeView, Profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,8 +29,10 @@ urlpatterns = [
     path('', include('home.urls')),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.Profile, name='profile'),
+    path('profileview/',user_views.ProfileView,name='profile_view'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
+    path('notifications/',user_views.Notifications,name='notifications'),
     path('password-reset/',
          auth_views.PasswordResetView.as_view(
              template_name='users/password_reset.html'
