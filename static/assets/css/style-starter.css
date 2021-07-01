@@ -10300,7 +10300,7 @@ button.navbar-toggler.collapsed .icon-expand {
   position: relative; }
 
 .w3l-main-slider .banner-view {
-  background: url(../images/banner1.jpg) no-repeat center;
+  background: url(../images/bannernew1.jpg) no-repeat center;
   background-size: cover;
   min-height: calc(100vh - 140px);
   position: relative;
@@ -10310,15 +10310,15 @@ button.navbar-toggler.collapsed .icon-expand {
   padding: 3em 0; }
 
 .w3l-main-slider .banner-top1 {
-  background: url(../images/banner2.jpg) no-repeat 0px 0px;
+  background: url(../images/bannernew2.jpg) no-repeat 0px 0px;
   background-size: cover; }
 
 .w3l-main-slider .banner-top2 {
-  background: url(../images/banner3.jpg) no-repeat 0px 0px;
+  background: url(../images/bannernew3.jpg) no-repeat 0px 0px;
   background-size: cover; }
 
 .w3l-main-slider .banner-top3 {
-  background: url(../images/banner4.jpg) no-repeat 0px 0px;
+  background: url(../images/bannernew4.jpg) no-repeat 0px 0px;
   background-size: cover; }
 
 .w3l-main-slider .banner-view:before {
