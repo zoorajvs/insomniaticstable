@@ -2,12 +2,15 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from ckeditor.fields import RichTextField
 
 
 class Post(models.Model):
     post_title = models.CharField(max_length=100)
-    content = models.TextField()
-    content_1 = models.TextField(null=True)
+    # content = models.TextField()
+    # content_1 = models.TextField(null=True)
+    content = RichTextField(blank=True, null=True)
+    content_1 = RichTextField(blank=True, null=True)
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     Related_to = (
@@ -29,8 +32,9 @@ class Post(models.Model):
     def get_absolute_url(self):  # for redircting to the post after the creation of the same
         return reverse('post-detail', kwargs={'pk': self.pk})
 
+
 class Comment1(models.Model):
-    post = models.ForeignKey(Post,related_name='comments1', on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='comments1', on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
     body = models.TextField()
     date_added = models.DateTimeField(auto_now_add=True)
