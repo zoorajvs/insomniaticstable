@@ -7,10 +7,8 @@ from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     post_title = models.CharField(max_length=100)
-    # content = models.TextField()
-    # content_1 = models.TextField(null=True)
-    content = RichTextField(blank=True, null=True)
-    content_1 = RichTextField(blank=True, null=True)
+    content = models.TextField()
+    content_1 = models.TextField(null=True)
     date_posted = models.DateField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     Related_to = (

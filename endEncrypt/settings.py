@@ -49,8 +49,7 @@ INSTALLED_APPS = [
     'basic.apps.BasicConfig',
     'home.apps.HomeConfig',
     'users.apps.UsersConfig',
-    'crispy_forms',
-    'ckeditor'
+    'crispy_forms'
 
 ]
 

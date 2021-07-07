@@ -30,7 +30,7 @@
                                 <h2 class="feature-titel mb-3"> {{post.post_title}} </h2>
                                 <a href="{% url 'user-posts' post.author.username %}" >{{ post.author.first_name }}</a> <br>
                                 <small>{{ post.date_posted|date:"F d, Y" }}</small>
-                                <p class="feature-text">{{post.content|safe}}
+                                <p class="feature-text">{{post.content}}
                                 </p>
                             
                                 <a href="{% url 'post-detail' post.id %}" class="read mt-4 d-block">continue reading</a>
